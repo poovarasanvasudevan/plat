@@ -1,0 +1,37 @@
+{
+  "name": "coore-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "csurf": "^1.9.0",
+    "debug": "~2.6.9",
+    "deepstream.io": "^3.1.2",
+    "deepstream.io-cache-redis": "^1.1.0",
+    "deepstream.io-storage-mongodb": "^1.1.0",
+    "express": "~4.16.0",
+    "express-graphql": "^0.6.12",
+    "express-limiter": "^1.6.1",
+    "express-session": "^1.15.6",
+    "express-status-monitor": "^1.1.5",
+    "graphql": "^0.13.2",
+    "hbs": "~4.0.1",
+    "helmet": "^3.13.0",
+    "http-errors": "~1.6.2",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.7",
+    "mongoose-morgan": "^1.0.4",
+    "morgan": "~1.9.0",
+    "node-sass-middleware": "0.11.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "redis": "^2.8.0",
+    "serve-favicon": "^2.5.0",
+    "should": "^13.2.3"
+  }
+}
