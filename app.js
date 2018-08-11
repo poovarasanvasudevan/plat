@@ -12,12 +12,11 @@ const
     fs = require('fs'),
     graphqlHTTP = require('express-graphql'),
     cors = require("cors"),
-    DeepstreamServer = require('deepstream.io'),
-    MongoDBStorageConnector = require('deepstream.io-storage-mongodb'),
-    RedisCacheConnector = require('deepstream.io-cache-redis'),
-    C = DeepstreamServer.constants,
+    queryString = require('query-string'),
     morgan = require('./core/Logger'),
     hbs = require('hbs'),
+    url = require('url'),
+    { URLSearchParams } = require('url'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
@@ -25,8 +24,9 @@ const
 const {buildSchema} = require('graphql');
 
 const
-    indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+    indexRouter = require('./routes/index'),
+    docsRouter = require('./routes/atlas-docs')
+    usersRouter = require('./routes/users');
 
 const app = express();
 const limiter = require('express-limiter')(app, redisClient.createClient());
@@ -41,6 +41,13 @@ const MONGO = 'mongodb://localhost:27017/corre-db'
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/component');
+hbs.registerHelper('url', function (urls) {
+    var parsedURL = url.parse(urls, true);
+    const qry = parsedURL.query
+    qry['_qa'] = new Date().valueOf()
+    const params = new URLSearchParams(qry);
+    return parsedURL.pathname +'?' + params.toString() ;
+})
 
 app.use(logger('common'));
 app.use(morgan({
@@ -112,6 +119,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('express-status-monitor')());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/docs', docsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -128,17 +136,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-const server = new DeepstreamServer()
-server.set('cache', new RedisCacheConnector({
-    port: 6379,
-    host: 'localhost'
-}));
-server.set('storage', new MongoDBStorageConnector({
-    connectionString: MONGO,
-    splitChar: '/'
-}));
-server.start()
 
 
 module.exports = app;
