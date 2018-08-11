@@ -33,6 +33,7 @@
     "query-string": "^6.1.0",
     "redis": "^2.8.0",
     "serve-favicon": "^2.5.0",
-    "should": "^13.2.3"
+    "should": "^13.2.3",
+    "uuid": "^3.3.2"
   }
 }

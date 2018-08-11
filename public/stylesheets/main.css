@@ -97,14 +97,13 @@
 }
 
 .home-page .home-page-hero {
-    margin-bottom: 20px;
+    margin: 20px;
     width: 100%
 }
 
 .home-page .home-page-hero > h1 {
     text-align: center;
     width: 100%;
-    font-family: "CharlieSans";
     font-size: 36px;
     line-height: 44px;
     letter-spacing: 0;
@@ -114,7 +113,6 @@
 .home-page .home-page-hero > h2 {
     text-align: center;
     color: #42526E !important;
-    font-family: "CharlieSans" !important;
     margin: 0 0 24px !important;
     font-size: 20px !important;
     line-height: 28px !important;
@@ -404,12 +402,10 @@
 
 .home-page .other-documentation {
     width: 100%;
-    margin-top: 40px
 }
 
 .home-page .other-documentation > h3 {
     padding-left: 20px;
-    font-family: "CharlieSans" !important;
     font-size: 24px;
     line-height: 32px;
     color: #253858;
@@ -693,7 +689,7 @@ form.component-inline-search-form:after {
     width: 16px;
     height: 16px;
     display: block;
-    background-image: url(../images/search-blue.svg);
+    background-image: url(../images/zoom-2.svg);
     background-repeat: no-repeat;
     background-position: center;
     -moz-background-size: contain;
@@ -705,7 +701,6 @@ form.component-inline-search-form:after {
 
 .kb-home-page h1.page-title {
     text-align: center;
-    font-family: "CharlieSans";
     font-size: 36px;
     line-height: 44px;
     letter-spacing: 0;
@@ -1815,7 +1810,6 @@ article a.ak-button-primary:focus, article span.ak-button-primary a:focus, artic
 }
 
 .blog-posts .blog-post h3 {
-    font-family: "CharlieSans";
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;

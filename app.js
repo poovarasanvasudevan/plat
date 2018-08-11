@@ -67,8 +67,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        httpOnly: true,
-        secure: true,
         expires: new Date(Date.now() + 60 * 60 * 1000)
     }
 }));
@@ -87,6 +85,7 @@ app.use(sassMiddleware({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(require('./core/middleware/IPTracker')({}))
 const contents = fs.readFileSync('./ql/init.ql', 'utf8');
 
 const Account = require('./models/Account');

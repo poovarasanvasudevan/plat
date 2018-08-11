@@ -1,7 +1,6 @@
 {{> header}}
 <div class="home-page">
 
-
     <div class="home-page-hero">
         <h1>Atlassian Documentation</h1>
         <h2>Find help using and administering Atlassian products</h2>
@@ -9,7 +8,47 @@
 
     <form class="component-inline-search-form" action="/search/" method="get">
         <input type="text" name="query" placeholder="Search documentation">
-
     </form>
 
+    <div class="other-documentation">
+
+        <hr/>
+
+        <h3>Other Documentation</h3>
+        <ul class="other-documentation-tiles">
+            <li>
+                <a
+                        href="https://developer.atlassian.com/docs/?_ga=2.119105930.2043292616.1533950944-690573864.1532774912"
+                        class="home-page-other-documentation-tile"><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size conf-macro output-inline">
+                    <img width="50"
+                         class="confluence-embedded-image"
+                         src="{{url '/images/single-folded-content.svg'}}"></span>
+                    <div class="tile-details">
+                        <h3 id="AtlassianDocumentation-Developers">Developers</h3>
+                        <p><span>Find API documentation and guides for developing apps and integrations.</span></p>
+                        <p>
+                        <div class="other-documentation-tile-button">View developer docs</div>
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/"
+                   class="home-page-other-documentation-tile"><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size conf-macro output-inline">
+                    <img width="50" class="confluence-embedded-image" src="{{url '/images/single-folded-content.svg'}}"></span>
+                    <div class="tile-details">
+                        <h3 id="AtlassianDocumentation-Enterprise">Enterprise</h3>
+                        <p><span>Learn about Atlassian Enterprise and its Data Center products.</span></p>
+                        <p>
+                        <div class="other-documentation-tile-button">View enterprise docs</div>
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
+
+
