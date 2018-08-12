@@ -21,6 +21,7 @@ const
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 var i18n = require("i18n-express");
+var SSE = require('express-sse');
 
 const {buildSchema} = require('graphql');
 
@@ -127,6 +128,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/docs', docsRouter);
 
+let sse = new SSE(["array", "containing", "initial", "content", "(optional)"]);
+app.get('/stream', sse.init);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
