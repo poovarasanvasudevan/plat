@@ -16,17 +16,18 @@ const
     morgan = require('./core/Logger'),
     hbs = require('hbs'),
     url = require('url'),
-    { URLSearchParams } = require('url'),
+    {URLSearchParams} = require('url'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
+var i18n = require("i18n-express");
 
 const {buildSchema} = require('graphql');
 
 const
     indexRouter = require('./routes/index'),
     docsRouter = require('./routes/atlas-docs')
-    usersRouter = require('./routes/users');
+usersRouter = require('./routes/users');
 
 const app = express();
 const limiter = require('express-limiter')(app, redisClient.createClient());
@@ -42,11 +43,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/component');
 hbs.registerHelper('url', function (urls) {
-    var parsedURL = url.parse(urls, true);
+    const parsedURL = url.parse(urls, true);
     const qry = parsedURL.query
     qry['_qa'] = new Date().valueOf()
+    qry['clang'] = 'en'
     const params = new URLSearchParams(qry);
-    return parsedURL.pathname +'?' + params.toString() ;
+    return parsedURL.pathname + '?' + params.toString();
 })
 
 app.use(logger('common'));
@@ -82,6 +84,11 @@ app.use(sassMiddleware({
     dest: path.join(__dirname, 'public'),
     indentedSyntax: true, // true = .sass and false = .scss
     sourceMap: true
+}));
+app.use(i18n({
+    translationsPath: path.join(__dirname, 'i18n'), // <--- use here. Specify translations files path.
+    siteLangs: ["en"],
+    textsVarName: 'translation'
 }));
 app.use(passport.initialize());
 app.use(passport.session());
