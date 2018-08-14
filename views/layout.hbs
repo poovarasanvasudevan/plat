@@ -5,19 +5,24 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/asset/stylesheets/style.css'/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='/stylesheets/fontawesome-all.min.css'/>
-    <link rel='stylesheet' href='/stylesheets/grid.css'/>
-    <link rel='stylesheet' href='/stylesheets/main.css'/>
-    <link rel='stylesheet' href='/stylesheets/app.css'/>
+    <link rel='stylesheet' href='/asset/stylesheets/fontawesome-all.min.css'/>
+    <link rel='stylesheet' href='/asset/stylesheets/grid.css'/>
+    <link rel='stylesheet' href='/asset/stylesheets/main.css'/>
+    <link rel='stylesheet' href='/asset/stylesheets/app.css'/>
+
+    <meta name="session" content="{{req.session.tracker}}">
 </head>
 <body class="lia-qanda lia-user-status-anonymous QandAQuestionPage lia-body">
 <div class="lia-content">
     {{{body}}}
 </div>
-<script src="/javascripts/jq.js"></script>
-<script src="/javascripts/eventSource.js"></script>
-<script src="/javascripts/app.js"></script>
+<script>
+    const SESSION = '{{req.session.tracker}}'
+</script>
+<script src="/asset/javascripts/jq.js"></script>
+<script src="/asset/javascripts/eventSource.js"></script>
+<script src="/asset/javascripts/app.js"></script>
 </body>
 </html>

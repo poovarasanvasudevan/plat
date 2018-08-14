@@ -1,0 +1,39 @@
+{{> header_login}}
+<div>
+    <div class="atl-widget atl-widget--house-ad adg-card--p2 col-md-36 col-md-offset-32" style="margin-top: 8%">
+        <form class="component-inline-login-form padding30" action="{{url '/register'}}" method="post">
+
+
+            <div class="inputWithIcon row pad10">
+                <div class="col-md-50">
+                    <input type="text" name="fname" class="full-per" placeholder="First Name">
+                </div>
+
+                <div class="col-md-50">
+                    <input type="text" name="lname" class="full-per" placeholder="Last Name">
+                </div>
+            </div>
+
+            <div class="inputWithIcon pad10">
+                <input type="text" name="username" class="full-per" placeholder="Username">
+            </div>
+
+
+            <div class="inputWithIcon pad10">
+                <input type="email" name="email" class="full-per" placeholder="Email">
+            </div>
+
+            <div class="inputWithIcon pad10">
+                <input type="password" name="password" class="full-per" placeholder="Password">
+            </div>
+
+            <div class="inputWithIcon pad10">
+                <input type="password" name="repassword" class="full-per" placeholder="Re-enter Password">
+            </div>
+
+            <div class="pad10">
+                <button class="adg-button--cta-yellow per100 " id="atlcommNavLink-register"> Sign up</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -9533,3 +9533,46 @@ body > .mce-floatpanel.mce-menu > .mce-container-body > div:last-child span, bod
 .nav .nav-column li a:hover {
     color: #666666;
 }
+
+
+
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 10px;
+    background: #0052CC;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid #0052CC;
+}
+
+/* Set a style for the submit button */
+.btn {
+    background-color: #0052CC;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}

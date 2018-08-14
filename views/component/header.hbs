@@ -183,15 +183,40 @@
                                                     </div>
                                                 </div>
                                             </li>
-
                                         </ul>
                                     </div>
 
-
                                     <div class="atl-navigation__actions">
-                                        <a class="adg-button--cta-yellow" id="atlcommNavLink-register"> Sign up </a>
-                                        <a class="adg-button--subtle" href="{{url '/login'}}" id="atlcommNavLink-login">
-                                            Log in </a>
+                                        {{#if req.user}}
+                                            <a href="#">
+                                                <div class="adg-flag">
+                                                    <div class="adg-flag__fix adg-u-mr1">
+                                                        <div class="UserAvatar lia-user-avatar lia-component-common-widget-user-avatar">
+                                                        <span class="UserAvatar lia-link-navigation" target="_self"
+                                                              id="link_1_1ba916aa8c9c16"
+                                                              href="#">
+                                                            <img
+                                                                    class="lia-user-avatar-profile avatar"
+                                                                    title="{{req.user.fName}}"
+                                                                    alt="{{req.user.fName}}"
+                                                                    id="display_1ba916aa8c9c16"
+                                                                    src="https://avatars1.githubusercontent.com/u/8036283?s=460&v=4">
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="adg-flag__flex">
+                                                        <div class="js-hovercard-parent">
+                                                            <h4 class="white">{{req.user.fName}}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        {{else}}
+                                            <a class="adg-button--cta-yellow" id="atlcommNavLink-register"
+                                               href="{{url '/register'}}"> Sign up </a>
+                                            <a class="adg-button--subtle" href="{{url '/login'}}"
+                                               id="atlcommNavLink-login">Log in </a>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>

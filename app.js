@@ -22,6 +22,8 @@ const
     LocalStrategy = require('passport-local').Strategy;
 var i18n = require("i18n-express");
 var SSE = require('express-sse');
+const MongoStore = require('connect-mongo')(session);
+
 
 const {buildSchema} = require('graphql');
 
@@ -58,6 +60,10 @@ app.use(morgan({
     connectionString: MONGO
 }, {}, 'common'));
 
+mongoose.connect(MONGO, {useNewUrlParser: true});
+mongoose.Promise = global.Promise;
+const db = mongoose.connection
+
 
 app.use(cors());
 app.use(helmet())
@@ -69,6 +75,7 @@ app.use(session({
     key: 'myCookieSessionId',
     resave: true,
     saveUninitialized: true,
+    store: new MongoStore({mongooseConnection: db}),
     cookie: {
         expires: new Date(Date.now() + 60 * 60 * 1000)
     }
@@ -93,7 +100,12 @@ app.use(i18n({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function (req, res, next) {
+    res.locals.req = req;
+    next();
+});
 app.use(require('./core/middleware/IPTracker')({}))
+//app.use(require('./core/middleware/Cache'))
 const contents = fs.readFileSync('./ql/init.ql', 'utf8');
 
 const Account = require('./models/Account');
@@ -102,7 +114,6 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect(MONGO, {useNewUrlParser: true});
 
 
 const root = {
@@ -121,7 +132,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/asset', express.static(path.join(__dirname, 'public')));
 
 app.use(require('express-status-monitor')());
 app.use('/', indexRouter);
