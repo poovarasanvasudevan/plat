@@ -23,6 +23,10 @@ const Account = new Schema({
     createdDate: {type: Date, default: Date.now},
 });
 
+Account.virtual('fullName').get(function () {
+    return this.fName + ' ' + this.lName;
+});
+
 Account.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Account', Account);

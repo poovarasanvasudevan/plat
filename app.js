@@ -19,9 +19,11 @@ const
     {URLSearchParams} = require('url'),
     mongoose = require('mongoose'),
     passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+    _ = require('lodash')
+LocalStrategy = require('passport-local').Strategy;
 var i18n = require("i18n-express");
 var SSE = require('express-sse');
+var glob = require("glob")
 const MongoStore = require('connect-mongo')(session);
 
 
@@ -41,8 +43,18 @@ limiter({
 })
 
 const MONGO = 'mongodb://localhost:27017/corre-db'
+
+let viewFolders = [path.join(__dirname, 'views')]
+
+glob("./modules/*/view",{},(err,files) => {
+    _.each(files,(file) => {
+        viewFolders.push(path.join(__dirname,file))
+    })
+
+})
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', viewFolders);
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/component');
 hbs.registerHelper('url', function (urls) {
@@ -113,31 +125,15 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-// mongoose
-
-
-const root = {
-    hello: ({loop}) => {
-        var cCat = "";
-        for (i = 0; i < loop; i++) {
-            cCat += i + "==> "
-        }
-        return cCat;
-    },
-};
-app.use('/graphql', graphqlHTTP({
-    schema: buildSchema(contents),
-    rootValue: root,
-    graphiql: true,
-}));
 
 
 app.use('/asset', express.static(path.join(__dirname, 'public')));
-
 app.use(require('express-status-monitor')());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/docs', docsRouter);
+app.use('/trello', require('./modules/trello/route'));
+
 
 let sse = new SSE(["array", "containing", "initial", "content", "(optional)"]);
 app.get('/stream', sse.init);
