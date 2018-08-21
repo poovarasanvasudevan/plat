@@ -1,0 +1,158 @@
+<md-toolbar class="shadow">
+    <div class="md-toolbar-tools">
+
+        <md-toolbar-filler layout="row" layout-align="center center" class="hide-gt-md">
+            <md-button class="md-icon-button" aria-label="Sidebar" ng-click="sidebarToggle()">
+                <md-icon class="fa fa-bars fa-1-5x"></md-icon>
+            </md-button>
+        </md-toolbar-filler>
+        <logo class="mt7"></logo>
+        <ul class="nav hide">
+            <li>
+                <a
+                        class="adg-button--nav-menu adg-u-ml2 adg-u-small-gone"
+                        id="atlcommNavLink-open-menu"> Explore
+                </a>
+                <div class="nc">
+                    <div class="col-md-70" style="margin-left: 15%">
+                        <center>
+                            <div class="nav-column">
+                                <h3 class="orange">Products</h3>
+                                <ul class="atl-collection-directory__list">
+                                    <li><a href="#"><i
+                                            class="fa fa-phone m-icon-color"></i><span
+                                            class="m-text">Atlas trello</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-bug m-icon-color"></i><span
+                                            class="m-text">Atlas Habiba</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-headphones m-icon-color"></i><span
+                                            class="m-text">Atlas Cylone</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-lock m-icon-color"></i><span
+                                            class="m-text">Atlas Cryper</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-bell m-icon-color"></i><span
+                                            class="m-text">Atlas Beller</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-leaf m-icon-color"></i><span
+                                            class="m-text">Atlas Facytacy</span></a>
+                                    </li>
+                                    <li><a href="#"><i
+                                            class="fa fa-robot m-icon-color"></i><span
+                                            class="m-text">Atlas Bot</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-column">
+                                <h3 class="orange">Services</h3>
+                                <ul>
+                                    <li><a href="#"><i
+                                            class="fa fa-video m-icon-color"></i><span
+                                            class="m-text">Webrtc</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-comment m-icon-color"></i><span
+                                            class="m-text">Push service</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-server m-icon-color"></i><span
+                                            class="m-text">JSON Server</span></a></li>
+                                </ul>
+
+                                <h3 class="orange">Application</h3>
+                                <ul>
+                                    <li><a href="#"><i
+                                            class="fab fa-git m-icon-color"></i><span
+                                            class="m-text">Gitler</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-columns m-icon-color"></i><span
+                                            class="m-text">Reado</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-desktop m-icon-color"></i><span
+                                            class="m-text">Atlas Desktop</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-column">
+                                <h3>Home</h3>
+                                <ul>
+                                    <li><a href="#">Pampers Diapers</a></li>
+                                    <li><a href="#">Huggies Diapers</a></li>
+                                    <li><a href="#">Seventh Generation</a></li>
+                                    <li><a href="#">Diapers</a></li>
+                                    <li><a href="#">Derbies</a></li>
+                                    <li><a href="#">Driving shoes</a></li>
+                                    <li><a href="#">Espadrilles</a></li>
+                                    <li><a href="#">Loafers</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-column">
+                                <h3 class="orange">Resources</h3>
+                                <ul>
+                                    <li><a href="/docs" coorehref><i
+                                            class="fa fa-hand-paper m-icon-color"></i><span
+                                            class="m-text">Documentation</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-users m-icon-color"></i><span
+                                            class="m-text">Fourms</span></a></li>
+                                </ul>
+
+                                <h3 class="orange">About</h3>
+                                <ul>
+                                    <li><a href="#"><i
+                                            class="fa fa-user m-icon-color"></i><span
+                                            class="m-text">Contact us</span></a></li>
+                                    <li><a href="#"><i
+                                            class="fa fa-question-circle m-icon-color"></i><span
+                                            class="m-text">Help</span></a></li>
+                                </ul>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <h2 flex md-truncate></h2>
+        <div layout="row" ng-show="barEnable == 'true'">
+            <div ng-if="user != null">
+                <div class="adg-flag">
+
+                    <md-button class="md-icon-button hide-sm hide-xs" aria-label="Settings">
+                        <md-icon class="fa fa-bell fa-1-5x"></md-icon>
+                    </md-button>
+
+                    <a class="md-button md-icon-button hide-sm hide-xs" aria-label="Settings" href="/dashboard" coorehref>
+                        <md-icon class="fas fa-th fa-1-5x"></md-icon>
+                    </a>
+
+                    <md-button class="md-icon-button logo">
+                        <img
+                                class="logo-image"
+                                title="{#user.fName#}"
+                                alt="{#user.fName#}"
+                                src="https://avatars1.githubusercontent.com/u/8036283?s=460&v=4">
+                    </md-button>
+                </div>
+            </div>
+
+
+            <a coorehref ng-if="user == null" class="adg-button--cta-yellow" id="atlcommNavLink-register"
+               href="/register"> Sign up </a>
+            <a coorehref ng-if="user == null" class="adg-button--subtle" href="/login"
+               id="atlcommNavLink-login">Log in </a>
+        </div>
+
+
+        <!--<div class="adg-flag__fix adg-u-mr1" ng-if="user != null">-->
+            <!--<div class="UserAvatar lia-user-avatar lia-component-common-widget-user-avatar">-->
+                <!--<a class="UserAvatar lia-link-navigation" target="_self"-->
+                   <!--id="link_1_1ba916aa8c9c16"-->
+                   <!--href="/dashboard" coorehref>-->
+                    <!--<img-->
+                            <!--class="lia-user-avatar-profile avatar"-->
+                            <!--title="{#user.fName#}"-->
+                            <!--alt="{#user.fName#}"-->
+                            <!--id="display_1ba916aa8c9c16"-->
+                            <!--src="https://avatars1.githubusercontent.com/u/8036283?s=460&v=4">-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</md-toolbar>

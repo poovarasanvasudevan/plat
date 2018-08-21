@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>{{translation.APP_NAME}} | Developer </title>
 
@@ -10,19 +10,48 @@
     <link rel='stylesheet' href='/asset/stylesheets/fontawesome-all.min.css'/>
     <link rel='stylesheet' href='/asset/stylesheets/grid.css'/>
     <link rel='stylesheet' href='/asset/stylesheets/main.css'/>
+    <link rel='stylesheet' href='/asset/stylesheets/angular-material.min.css'/>
     <link rel='stylesheet' href='/asset/stylesheets/app.css'/>
 
     <meta name="session" content="{{req.session.tracker}}">
+    <style>
+        :root {
+            --main-color: #0052CC
+        }
+    </style>
 </head>
-<body class="lia-qanda lia-user-status-anonymous QandAQuestionPage lia-body">
-<div class="lia-content">
+<body ng-app="corre" layout='row' ng-controller="basecontroller">
+
+<div layout="column" layout-fill>
     {{{body}}}
 </div>
+
+
 <script>
     const SESSION = '{{req.session.tracker}}'
+
+    let USER = undefined
+        {{#if req.user}}
+        USER = {
+            id: '{{req.user._id}}',
+            fName: '{{req.user.fName}}',
+            lName: '{{req.user.lName}}',
+            email: '{{req.user.email}}',
+            username: '{{req.user.username}}',
+        }
+        {{/if}}
+    const COLOR = '#0052CC'
+    const COLOR_PALLETE = 'gpanel'
 </script>
 <script src="/asset/javascripts/jq.js"></script>
+<script src="/asset/javascripts/angular.min.js"></script>
+<script src="/asset/javascripts/angular-animate.min.js"></script>
+<script src="/asset/javascripts/angular-aria.min.js"></script>
+<script src="/asset/javascripts/angular-messages.min.js"></script>
+<script src="/asset/javascripts/angular-material.min.js"></script>
+
 <script src="/asset/javascripts/eventSource.js"></script>
+<script src="/asset/javascripts/ang-app.js"></script>
 <script src="/asset/javascripts/app.js"></script>
 </body>
 </html>

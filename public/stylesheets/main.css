@@ -1882,13 +1882,55 @@ article a.ak-button-primary:focus, article span.ak-button-primary a:focus, artic
     color: #fff;
     background-color: #0052CC;
 }
-
-.avatar {
-    width: 32px;
-    height: 32px;
+.md-button.logo {
+    height: 7rem;
+    width: 7rem;
 }
-
+.logo-image {
+    height: 100%;
+    width: 100%;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
 
 .white {
     color: #fff;
+}
+
+md-toolbar, .md-toolbar-tools {
+    max-height: 52px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+}
+
+.mt7 {
+    margin-top: 7px;
+}
+
+.shadow {
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+}
+.cColor {
+    color: var(--main-color);
+}
+md-content {
+
+}
+
+.fa-1-5x {
+    font-size: 1.4em;
+}
+@font-face {
+    font-family: "Psans";
+    src: url("../font/psans.ttf");
+}
+body {
+    font-family: Psans, sans-serif !important;
 }

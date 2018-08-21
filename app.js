@@ -2,7 +2,8 @@ const
     createError = require('http-errors'),
     express = require('express'),
     path = require('path'),
-    cookieParser = require('cookie-parser'),
+    compression = require('compression')
+cookieParser = require('cookie-parser'),
     logger = require('morgan'),
     sassMiddleware = require('node-sass-middleware'),
     helmet = require('helmet'),
@@ -21,9 +22,11 @@ const
     passport = require('passport'),
     _ = require('lodash')
 LocalStrategy = require('passport-local').Strategy;
-var i18n = require("i18n-express");
-var SSE = require('express-sse');
-var glob = require("glob")
+const i18n = require("i18n-express");
+const SSE = require('express-sse');
+const glob = require("glob")
+const responseTime = require('response-time')
+const rid = require('connect-rid');
 const MongoStore = require('connect-mongo')(session);
 
 
@@ -46,11 +49,10 @@ const MONGO = 'mongodb://localhost:27017/corre-db'
 
 let viewFolders = [path.join(__dirname, 'views')]
 
-glob("./modules/*/view",{},(err,files) => {
-    _.each(files,(file) => {
-        viewFolders.push(path.join(__dirname,file))
+glob("./modules/*/view", {}, (err, files) => {
+    _.each(files, (file) => {
+        viewFolders.push(path.join(__dirname, file))
     })
-
 })
 
 // view engine setup
@@ -65,7 +67,7 @@ hbs.registerHelper('url', function (urls) {
     const params = new URLSearchParams(qry);
     return parsedURL.pathname + '?' + params.toString();
 })
-
+app.use(responseTime())
 app.use(logger('common'));
 app.use(morgan({
     collection: 'error_logger',
@@ -84,7 +86,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
     secret: 'mySecretCookieSalt',
-    key: 'myCookieSessionId',
+    key: 'coore',
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({mongooseConnection: db}),
@@ -117,6 +119,8 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(require('./core/middleware/IPTracker')({}))
+app.use(compression())
+app.use(rid())
 //app.use(require('./core/middleware/Cache'))
 const contents = fs.readFileSync('./ql/init.ql', 'utf8');
 
@@ -124,7 +128,6 @@ const Account = require('./models/Account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
-
 
 
 app.use('/asset', express.static(path.join(__dirname, 'public')));

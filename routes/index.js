@@ -2,12 +2,18 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Account = require('../models/Account');
+const LoginRedirect = require('../core/middleware/LoginUnAccess')
+const IsLoggedIn = require('../core/middleware/IsLoggedIn')
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'Express'});
 });
-router.get('/register', function (req, res) {
+router.get('/register', LoginRedirect, function (req, res) {
     res.render('register', {});
+});
+
+router.get('/dashboard', IsLoggedIn, function (req, res) {
+    res.render('pages/dashboard', {});
 });
 
 router.post('/register', function (req, res) {
@@ -28,15 +34,19 @@ router.post('/register', function (req, res) {
     });
 });
 
-router.get('/login', function (req, res) {
+router.get('/login', LoginRedirect, function (req, res) {
     res.render('login', {user: req.user});
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
     failureRedirect: '/',
     failureFlash: true
-}));
+}), function(req, res) {
+    // Explicitly save the session before redirecting!
+    req.session.save(() => {
+        res.redirect('/dashboard');
+    })
+});
 
 router.get('/logout', function (req, res) {
     req.logout();
